@@ -3,7 +3,7 @@ export const ADAPTATION = 'adaptation';
 export const MITIGATION = 'mitigation';
 
 export function getReductionPotential(action) {
-    if (!action.GHGReductionPotential) return ''
+    if (!action?.GHGReductionPotential) return ''
     return Object.values(action.GHGReductionPotential).find((value) => {
         return !!value
     })
@@ -20,6 +20,7 @@ export const toTitleCase = str => {
 export const isAdaptation = type => type?.toLowerCase && type.toLowerCase() === ADAPTATION.toLowerCase();
 
 const getNestedValue = (obj, path) => {
+    if (!path) return null
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
 };
 

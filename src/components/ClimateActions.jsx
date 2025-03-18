@@ -15,7 +15,7 @@ import ActionDetailsModal from "./ActionDetailsModal.jsx";
 import { exportToPDF } from "../utils/exportUtils.js";
 import {useTranslation} from "react-i18next";
 
-const getImpactLevelClass = (level) => {
+export const getImpactLevelClass = (level) => {
     const classes = {
         Low: "bg-blue-100 text-blue-800 border border-blue-800",
         Medium: "bg-yellow-100 text-yellow-800 border border-yellow-800",
@@ -39,7 +39,6 @@ const ClimateActions = ({
     const {t} = useTranslation();
     const addRank = (actions) =>
         actions.map((action, index) => ({...action, id: index + 1}));
-
     const saveNewRanking = (type) => (newRanking) => {
         const updatedRanking = newRanking.map((action, index) => ({
             ...action,
@@ -191,7 +190,9 @@ const ClimateActions = ({
         fetchActions();
     }, [selectedCity]);
 
-
+if (isLoading || (mitigationData.length  === 0 && adaptationData.length === 0)) return <>Loading</>
+    console.log('ClimateActions:196') // TODO NINA
+    console.log("ClimateActions.jsx mitigationData", JSON.stringify(mitigationData.length, null, 2)) // TODO NINA
     return (
         <div className="max-w-screen-xl mx-auto p-12">
 

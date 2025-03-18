@@ -33,7 +33,7 @@ const TopClimateActions = ({
 
     const getProgressBars = (action) => {
         if (isAdaptation(type)) {
-            const level = action.AdaptationEffectiveness;
+            const level = action?.AdaptationEffectiveness;
             const filledBars =
                 level === "high" ? 3 : level === "medium" ? 2 : 1;
             const color =
@@ -239,7 +239,7 @@ const TopClimateActions = ({
             const newPlan = {
                 plan,
                 timestamp: new Date().toISOString(),
-                actionName: action.ActionName,
+                actionName: action?.ActionName,
             };
             setGeneratedPlans((prevPlans) => [...prevPlans, newPlan]);
             setLocalGeneratedPlan(plan);
@@ -280,10 +280,10 @@ const TopClimateActions = ({
                         {/* Description */}
                         <div className="space-y-2">
                             <h2 className="text-xl font-semibold text-gray-900 font-poppins">
-                                {action.ActionName}
+                                {action?.ActionName}
                             </h2>
                             <p className="text-gray-600 text-md line-clamp-2 font-opensans">
-                                {action.Description}
+                                {action?.Description}
                             </p>
                         </div>
 
@@ -301,7 +301,7 @@ const TopClimateActions = ({
                                 <p className="text-gray-600 text-sm font-semibold line-clamp-2 font-opensans">
                                     {isAdaptation(type)
                                         ? toTitleCase(
-                                              action.AdaptationEffectiveness,
+                                              action?.AdaptationEffectiveness,
                                           )
                                         : getReductionPotential(action)}
                                 </p>
@@ -316,7 +316,7 @@ const TopClimateActions = ({
                                 </span>
                                 <span className="text-gray-600 font-semibold">
                                     {toTitleCase(
-                                        action.Sector || action.Hazard,
+                                        action?.Sector || action?.Hazard,
                                     )}
                                 </span>
                             </div>
@@ -325,7 +325,7 @@ const TopClimateActions = ({
                                     {t("estimatedCost")}
                                 </span>
                                 <span className="text-gray-600 font-semibold">
-                                    {toTitleCase(action.CostInvestmentNeeded)}
+                                    {toTitleCase(action?.CostInvestmentNeeded)}
                                 </span>
                             </div>
                             <div className="flex justify-between items-center">
@@ -333,7 +333,7 @@ const TopClimateActions = ({
                                     {t("implementationTime")}
                                 </span>
                                 <span className="text-gray-600 font-semibold">
-                                    {action.TimelineForImplementation}
+                                    {action?.TimelineForImplementation}
                                 </span>
                             </div>
                         </div>
